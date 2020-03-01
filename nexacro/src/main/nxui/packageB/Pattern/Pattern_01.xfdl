@@ -1,0 +1,266 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Pattern_01" classname="Work" inheritanceid="" position="absolute" titletext="단건 데이터 조회 샘플" left="0" width="800" top="0" height="369" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Div id="div_search" taborder="24" left="0%" top="1" right="-0.25%" height="41" scrollbars="none" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Static id="st_searchCondition" taborder="0" text="사용자" cssclass="sta_WF_SearchLabel" left="17" top="11" width="48" height="20" domainId="nexa.s_condition"/>
+              <Edit id="edt_searchKeyword" taborder="1" value="홍길동" onkeyup="div_search_btn_search_onclick" cssclass="edt_WF_Search" left="10.01%" top="11" right="57.57%" height="20"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_grid_top" taborder="17" left="0" top="53" right="0" height="23" scrollbars="none">
+          <Layouts>
+            <Layout>
+              <Button id="btn_add" taborder="27" text="추가" cssclass="btn_WF_Add" top="0" right="128" width="50" height="23" domainId="nexa.add" onclick="fn_add"/>
+              <Button id="btn_delete" taborder="28" text="삭제" cssclass="btn_WF_Delete" top="0" right="75" width="50" height="23" domainId="nexa.delete" onclick="fn_delete"/>
+              <Button id="btn_save" taborder="29" text="저장" cssclass="btn_WF_Custom" top="0" right="5" width="50" height="23" domainId="nexa.save" onclick="div_grid_top_btn_save_onclick"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Static id="stc_detail" taborder="21" text="상세정보" left="0.13%" top="52" right="79%" height="20" cssclass="sta_WF_SubTitle1"/>
+        <Button id="Button05" taborder="22" text="조회" onclick="fn_search" cssclass="btn_WF_Search" top="9" right="4" width="58" height="25"/>
+        <Static id="Static42" taborder="23" cssclass="sta_WF_DetailLine" left="0" top="78" right="0" height="2"/>
+        <Static id="stc_id" taborder="25" text="ID" cssclass="sta_WF_DetailLabel01" left="0" top="80" width="164" height="30" style="padding:1px 1px 1px 10;font:9 Dotum;" class="sub_title"/>
+        <Static id="Static01" taborder="26" text="EngName" cssclass="sta_WF_DetailLabel01" left="394" top="109" height="30" style="padding:0 0 0 10;font:9 Dotum;" width="164"/>
+        <Static id="Static07" taborder="27" text="Phone" cssclass="sta_WF_DetailLabel01" left="0%" top="138" style="padding:0 0 0 10;font:9 Dotum;" width="164" height="30"/>
+        <Edit id="edt_id" taborder="28" oneditclick="divInput_edt_id_oneditclick" top="80" height="30" width="232" left="163"/>
+        <Edit id="edtEngName" taborder="29" left="557" top="109" right="0%" height="30"/>
+        <Static id="stc_name" taborder="30" text="FullName" cssclass="sta_WF_DetailLabel01" left="0%" top="109" height="30" style="padding:1px 1px 1px 10;font:9 Dotum;" class="sub_title" width="164"/>
+        <Edit id="edt_fullName" taborder="31" left="163" top="109" height="30" width="232"/>
+        <Static id="stc_password" taborder="32" text="PASSWORD" cssclass="sta_WF_DetailLabel01" left="394" top="80" height="30" style="padding:1px 1px 1px 10;font:9 Dotum;" class="sub_title" right="242"/>
+        <Edit id="edt_password" taborder="33" password="true" left="557" top="80" right="0" height="30"/>
+        <Edit id="edt_phone" taborder="34" left="163" top="138" height="30" width="232"/>
+        <Static id="Static00" taborder="35" text="CellPhone" cssclass="sta_WF_DetailLabel01" left="394" top="138" height="30" style="padding:0 0 0 10;font:9 Dotum;" width="164"/>
+        <Edit id="edt_cellPhone" taborder="36" left="557" top="138" right="0%" height="30"/>
+        <Static id="Static02" taborder="37" text="Email" cssclass="sta_WF_DetailLabel01" left="394" top="167" height="30" style="padding:0 0 0 10;font:9 Dotum;" width="164"/>
+        <Edit id="edt_email" taborder="38" left="557" top="167" right="0" height="30"/>
+        <Static id="Static03" taborder="39" text="ZipCode" cssclass="sta_WF_DetailLabel01" left="0%" top="167" height="30" style="padding:0 0 0 10;font:9 Dotum;" width="164"/>
+        <Edit id="edt_zipCode" taborder="40" left="163" top="167" height="30" width="232"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <ConstColumn id="PageIndex" type="INT" size="30" value="1"/>
+          <ConstColumn id="PageSize" type="INT" size="30" value="5"/>
+          <ConstColumn id="PageUnit" type="INT" size="30" value="5"/>
+          <Column id="searchCondition" type="STRING" size="100"/>
+          <Column id="searchKeyword" type="STRING" size="100"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="searchKeyword">홍길동</Col>
+            <Col id="searchCondition"/>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_user" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="userId" type="STRING" size="256"/>
+          <Column id="password" type="STRING" size="256"/>
+          <Column id="userName" type="STRING" size="256"/>
+          <Column id="enName" type="STRING" size="256"/>
+          <Column id="email" type="STRING" size="256"/>
+          <Column id="phone" type="DATE" size="256"/>
+          <Column id="cellPhone" type="STRING" size="256"/>
+          <Column id="zipCode" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind>
+      <BindItem id="item0" compid="edt_id" propid="value" datasetid="ds_user" columnid="userId"/>
+      <BindItem id="item3" compid="edtEngName" propid="value" datasetid="ds_user" columnid="enName"/>
+      <BindItem id="item1" compid="edt_fullName" propid="value" datasetid="ds_user" columnid="userName"/>
+      <BindItem id="item2" compid="edt_password" propid="value" datasetid="ds_user" columnid="password"/>
+      <BindItem id="item4" compid="edt_phone" propid="value" datasetid="ds_user" columnid="phone"/>
+      <BindItem id="item5" compid="edt_cellPhone" propid="value" datasetid="ds_user" columnid="cellPhone"/>
+      <BindItem id="item6" compid="edt_email" propid="value" datasetid="ds_user" columnid="email"/>
+      <BindItem id="item7" compid="edt_zipCode" propid="value" datasetid="ds_user" columnid="zipCode"/>
+    </Bind>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* SYSTEM      : 넥사크로플랫폼 PackageB
+* BUSINESS    : 넥사크로플랫폼 PackageB
+* FILE NAME   : Pattern_01
+* PROGRAMMER  : 
+* DATE        : 
+* DESCRIPTION : SingleDetail
+*------------------------------------------------------------------
+* MODIFY DATE   PROGRAMMER			DESCRIPTION
+*------------------------------------------------------------------
+* 
+*------------------------------------------------------------------
+***********************************************************************************/
+
+/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+/***********************************************************************************
+* Global/Local Variable
+***********************************************************************************/
+
+
+
+/***********************************************************************************
+* Form Event
+***********************************************************************************/
+/**
+ * form onload 함수
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);	
+   
+} 
+
+
+/**
+ * 사용자 정보 조회 - Ibatis
+ * @return 
+ * @example
+ */
+this.fn_search = function(obj:Button,  e:nexacro.ClickEventInfo)
+{ 
+    var searchCondition =  "NAME";
+    var searchKeyword   = this.div_search.edt_searchKeyword.value;       
+    
+	this.ds_search.setColumn(0, "searchCondition", "NAME");
+	this.ds_search.setColumn(0, "searchKeyword", searchKeyword);
+    
+    var strSvcId    = "search";
+	var strSvcUrl   = application.services["svcurl"].url + "/selectUserInfoWithVo.do";
+	var inData      = "ds_search=ds_search";
+	var outData     = "ds_user=output1";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	var nDataType   = 0;
+	
+    this.transaction( strSvcId      //1.strMergeSvcID
+					, strSvcUrl     //2.strServiceUrl
+					, inData        //3.inDataSet
+					, outData       //4.outDataSet
+					, strArg        //5.arguments
+					, callBackFnc	//6.strCallbackFunc
+					, isAsync       //7.bAsync
+					, nDataType     //0.nDataType : 0(XML 타입), 1((Binary 타입),  2(SSV 타입) --> HTML5에서는 Binary 타입은 지원안함
+					, false);       //0.bCompress ( default : false ) 
+}
+
+
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode != 0)
+	{
+		return;
+	}
+	
+	switch(svcID)
+	{
+		case "search":
+			break;
+			
+		case "save":
+			// 저장 되었습니다.
+			alert("저장완료");
+			break;
+		case "delete":
+			alert("삭제완료");
+			break;
+	}
+}
+
+
+//추가
+this.fn_add = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_user.addRow();
+	this.div_search.edt_searchKeyword.set_value("");
+}
+
+//삭제
+this.fn_delete = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var nRow = this.ds_user.rowposition;
+	this.ds_user.deleteRow(nRow);
+	var rtnValue = Iject.confirm("삭제 하시겠습니까?");
+	
+	if(rtnValue)
+	{
+	
+		this.fn_save("delete");
+	}
+	else
+	{
+		this.fn_search();
+	}
+}
+
+
+//저장
+this.fn_save = function(strid)
+{
+    var strSvcId    = strid;
+	var strSvcUrl   = application.services["svcurl"].url + "/updateUserInfo.do";
+	var inData      = "input1=ds_user:U";
+	var outData     = "";
+	var strArg      = "";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	var nDataType   = 0;
+	
+    this.transaction( strSvcId      //1.strMergeSvcID
+					, strSvcUrl     //2.strServiceUrl
+					, inData        //3.inDataSet
+					, outData       //4.outDataSet
+					, strArg        //5.arguments
+					, callBackFnc	//6.strCallbackFunc
+					, isAsync       //7.bAsync
+					, nDataType     //0.nDataType : 0(XML 타입), 1((Binary 타입),  2(SSV 타입) --> HTML5에서는 Binary 타입은 지원안함
+					, false);       //0.bCompress ( default : false ) 
+}
+
+
+/**********************************************************************
+* User Function
+***********************************************************************/
+
+//저장버튼 클릭시 
+this.div_grid_top_btn_save_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fn_save("save");
+}
+
+//검색  Enter키
+this.div_search_btn_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if ( e.keycode == 13 )
+	{
+		this.fn_search();
+	}
+}
+
+
+
+]]></Script>
+  </Form>
+</FDL>

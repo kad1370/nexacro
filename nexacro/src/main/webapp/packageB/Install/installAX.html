@@ -1,0 +1,163 @@
+<HTML>
+<HEAD>
+<TITLE>nexacro Install Page</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=euc-kr">
+<meta http-equiv="X-UA-Compatible" content="requiresActiveX=true">
+<SCRIPT LANGUAGE="JavaScript"> 
+var pKey = "packageB";
+var Server_Path = "http://" + window.location.host + "/nexacro-sample";	//����ϴ� ���� �ּ�
+var prj_url     = Server_Path + "/packageB";
+var NEXACRO_CAB_VER = "2015,9,22,1";
+var bOnError = false;
+
+function fn_objectOnError() {
+
+	bOnError = true;
+}
+
+function fn_load()
+{
+
+	
+	if(bOnError == false) {  
+		
+	     nexacrolauncherax14.key = pKey;
+		 //nexacrolauncherax14.xadl = Server_Path+"/nexacro/nexacro.xadl.js";
+	     nexacrolauncherax14.bjson = prj_url + "/start.json";
+	   
+	 //   nexacrolauncherax14.onlyone = "true";
+	     //nexacrolauncherax14.makeshortcut(pKey, Server_Path+"/Install/img/xicon2.ico", "desktop","0");
+	     nexacrolauncherax14.splashimage = Server_Path+"/Install/img/loading_img.gif";
+	     nexacrolauncherax14.launch();
+	     //fn_close();
+		 
+	}
+	
+}
+
+function fn_close()
+{
+
+  if(navigator.appVersion.indexOf("MSIE 7.") >= 0 || navigator.appVersion.indexOf("MSIE 8.") >= 0  ||
+	  navigator.appVersion.indexOf("MSIE 9.") >= 0 || navigator.appVersion.indexOf("MSIE 10.") >=0  || 
+	  navigator.appVersion.indexOf("Trident") >= 0  ) {
+	    
+	    window.open('about:blank','_self').close();
+  } else {
+		
+		  window.opener = self;
+	    self.close();
+		
+	}
+}
+
+
+</SCRIPT> 
+</HEAD>
+<BODY onload ="fn_load();">
+
+<OBJECT ID="nexacrolauncherax14" CLASSID="CLSID:A7969122-0BB8-452A-93C9-72641B76CFB7" 
+        width="0" height="0" CODEBASE="./Download/nexacro14_Launcher.cab#version='+NEXACRO_CAB_VER+'" 
+        onError="fn_objectOnError()">	
+</OBJECT>
+<OBJECT ID="nexacroax14" CLASSID="CLSID:6DB5422D-536F-4B80-B32C-16BEA0971512" 
+        width="0" height="0" CODEBASE="./Download/nexacro14_SetupEngine.cab#version='+NEXACRO_CAB_VER+'"
+        onError="fn_objectOnError()">
+</OBJECT>
+ 
+
+
+
+<table id="ins_tbl" align="center" border=0 width="600">
+  <tr>
+    <td><table width="637" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td height="10"></td> 
+      </tr>
+      <tr>
+        <td><img src="./img/insu_down_listbg1.gif" width="721" height="12"></td>
+      </tr>
+      <tr>
+        <td height="37" bgcolor="#EEEEEE"><table width="607" border="0" align="center" cellpadding="0" cellspacing="0">
+          <tr>
+            <td height="15"></td>
+          </tr>
+          <tr>
+            <td><table width="590" border="0" align="center" cellpadding="0" cellspacing="0">
+              <tr>
+                <td width="10" rowspan="3"><img src="./img/insu_down_img.gif" width="150" height="90"></td>
+                <td width="590" height="35"><img src="./img/insu_down_title.gif" width="204" height="27"></td>
+              </tr>
+              <!--tr>
+                <td height="45"><img src="./img/insu_down_title2.gif" width="329" height="32"></td>
+              </tr-->
+            </table></td>
+          </tr>
+          <tr>
+            <td>&nbsp;</td>
+          </tr>
+          <tr>
+            <td><table width="607" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="12" height="12"><img src="./img/insu_down_listbg_sub1.gif" width="12" height="12"></td>
+                <td width="583" height="12" bgcolor="#FFFFFF"></td>
+                <td width="12" height="12"><img src="./img/insu_down_listbg_sub2.gif" width="12" height="12"></td>
+              </tr>
+              <tr>
+                <td rowspan="5" bgcolor="#FFFFFF">&nbsp;</td>
+                <td bgcolor="#FFFFFF"><table width="570" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="10" valign="top"><img src="./img/insu_down_list_icon1.gif" width="8" height="11"></td>
+                    <td width="570">��ȣȭ ���α׷� ��ġ���θ� ���� ���Ȱ��â�� ��Ÿ���� �ݵ��
+                      "<strong><font color="#FF7200">��</font></strong>"��
+                      �����Ͽ��ֽñ� �ٶ��ϴ�.<br>
+                      "�ƴϿ�"�� �����Ͻø� ������ ���� ����� ���ѵ˴ϴ�.</td>
+                  </tr>
+                </table></td>
+                <td rowspan="5" bgcolor="#FFFFFF">&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF"><table width="570" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="10" valign="top"><img src="./img/insu_down_list_icon1.gif" width="8" height="11"></td>
+                    <td width="570">������ XP ������2 ����ڲ����� �ּ� ǥ���� �Ʒ� �����
+                      " <img src="./img/insu_down_list_icon2.gif" width="15" height="15" align="absmiddle">��
+                      ����Ʈ����...���⸦ Ŭ���Ͻʽÿ�" �� �����Ͻþ�, Active X��Ʈ���� ��ġ�Ͻñ� �ٶ��ϴ�.</td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF">&nbsp;</td>
+              </tr>
+              <tr>
+                <td bgcolor="#FFFFFF"><table width="570" border="0" align="center" cellpadding="0" cellspacing="0">
+                  <tr>
+                    <td width="10" valign="top"><img src="./img/insu_down_list_icon1.gif" width="8" height="11"></td>
+                    <td width="570">���α׷� ��ġ�� ���������� ���� ��쿡�� �����ϱ�</font></strong>�� ���� ����
+                      �Ͻø� �ż��� �亯�� �帮�ڽ��ϴ�.</td>
+                  </tr>
+                </table></td>
+              </tr>
+              <tr>
+                <td width="12" height="12"><img src="./img/insu_down_listbg_sub3.gif" width="12" height="12"></td>
+                <td bgcolor="#FFFFFF"></td>
+                <td width="12" height="12"><img src="./img/insu_down_listbg_sub4.gif" width="12" height="12"></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><img src="./img/insu_down_listbg2.gif" width="720" height="11"></td>
+      </tr>
+      <tr>
+        <td height="5"></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,377 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Pattern_05" classname="FileUpDownload" left="0" top="0" width="800" height="775" titletext="파일 업/다운로드" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <FileUpload id="fileUploadMulti" taborder="1" retry="0" index="0" left="0.88%" top="370" right="17.88%" height="29" onitemchanged="fileUploadMulti_onitemchanged" onerror="fileUploadMulti_onerror" onsuccess="fileUploadMulti_onsuccess" multiselect="true" scrollbars="none"/>
+        <Grid id="Grid01" taborder="3" useinputpanel="false" left="1%" top="400" right="49.25%" height="230" binddataset="ds_fileMulti" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="282"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="파일 경로"/>
+                <Cell col="1" text="파일 명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FILE_PATH"/>
+                <Cell col="1" text="bind:FILE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_uploadMulti" taborder="9" text="업로드 파일" left="89.63%" top="375" right="0.88%" height="19" onclick="btn_uploadMulti_onclick" cssclass="btn_WF_Custom"/>
+        <FileDownload id="fileDownload" taborder="11" retry="0" left="101%" top="16" right="-13.5%" height="20" visible="false" text="파일다운로드"/>
+        <Grid id="grd_multiFile" taborder="12" binddataset="ds_multi" useinputpanel="false" cellsizingtype="col" left="51.13%" top="400" right="0.88%" height="230" autofittype="col" oncelldblclick="grd_multiFile_oncelldblclick">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="153"/>
+                <Column size="73"/>
+                <Column size="67"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="filename"/>
+                <Cell col="1" text="filesize"/>
+                <Cell col="2" text="tranfilesize"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:filename"/>
+                <Cell col="1" text="bind:filesize"/>
+                <Cell col="2" text="bind:tranfilesize"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <FileUpload id="fileUploadSingle" taborder="14" retry="0" index="0" onsuccess="fileUploadSingle_onsuccess" onerror="fileUploadSingle_onerror" onitemchanged="fileUploadSingle_onitemchanged" left="0.88%" top="31" right="17.88%" height="29"/>
+        <Button id="btn_uploadSingle" taborder="15" text="업로드 파일" onclick="btn_uploadSingle_onclick" left="89.63%" top="34" right="0.88%" height="19" cssclass="btn_WF_Custom"/>
+        <Grid id="grd_singleFile" taborder="16" binddataset="ds_fileSingle" useinputpanel="false" left="0.88%" top="59" right="0.88%" height="77" autofittype="col" cellsizingtype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="512"/>
+                <Column size="252"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="파일 경로"/>
+                <Cell col="1" text="파일명"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:FILE_PATH"/>
+                <Cell col="1" text="bind:FILE_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Grid id="grd_singleFile00" taborder="17" binddataset="ds_single" useinputpanel="false" cellsizingtype="col" oncelldblclick="grd_singleFile_oncellclick" left="0.88%" top="147" right="0.88%" height="77" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="80"/>
+                <Column size="80"/>
+                <Column size="80"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="filename"/>
+                <Cell col="1" text="filesize"/>
+                <Cell col="2" text="tranfilesize"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:filename"/>
+                <Cell col="1" text="bind:filesize"/>
+                <Cell col="2" text="bind:tranfilesize"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Static id="stc_detail" taborder="18" text="다중 파일 처리" cssclass="sta_WF_SubTitle1" left="1.13%" top="348" right="78%" height="20"/>
+        <Static id="stc_detail00" taborder="19" text="단일 파일 처리" cssclass="sta_WF_SubTitle1" left="1.13%" top="8" right="78%" height="20"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_fileSingle">
+        <ColumnInfo>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_SAVENM" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_fileMulti">
+        <ColumnInfo>
+          <Column id="FILE_PATH" type="STRING" size="256"/>
+          <Column id="FILE_NAME" type="STRING" size="256"/>
+          <Column id="FILE_SIZE" type="STRING" size="256"/>
+          <Column id="FILE_SAVENM" type="STRING" size="256"/>
+          <Column id="FILE_TYPE" type="STRING" size="256"/>
+          <Column id="NUM" type="STRING" size="256"/>
+          <Column id="CHK" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_single">
+        <ColumnInfo>
+          <Column id="fileid" type="string" size="32"/>
+          <Column id="fileimg" type="string" size="32"/>
+          <Column id="filename" type="string" size="32"/>
+          <Column id="filesize" type="int" size="4"/>
+          <Column id="tranfilesize" type="int" size="4"/>
+          <Column id="prog" type="int" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+      <Dataset id="ds_multi">
+        <ColumnInfo>
+          <Column id="fileid" type="string" size="32"/>
+          <Column id="fileimg" type="string" size="32"/>
+          <Column id="filename" type="string" size="32"/>
+          <Column id="filesize" type="int" size="4"/>
+          <Column id="tranfilesize" type="int" size="4"/>
+          <Column id="prog" type="int" size="4"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* SYSTEM      : 넥사크로플랫폼 PackageB
+* BUSINESS    : 넥사크로플랫폼 PackageB
+* FILE NAME   : Pattern_05
+* PROGRAMMER  : 
+* DATE        : 
+* DESCRIPTION : File up /down
+*------------------------------------------------------------------
+* MODIFY DATE   PROGRAMMER			DESCRIPTION
+*------------------------------------------------------------------
+* 
+*------------------------------------------------------------------
+***********************************************************************************/
+
+/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+/***********************************************************************************
+* Global/Local Variable
+***********************************************************************************/
+
+
+/***********************************************************************************
+* Form Event
+***********************************************************************************/
+/**
+ * form onload 함수
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	//기본 공통  함수 초기화
+	Iject.formOnload(obj);
+}
+
+
+this.fileUploadSingle_onitemchanged = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	var sCompValue = this.fileUploadSingle.value;
+	var sNewvalue = e.newvalue;
+	var sOldValue = e.oldvalue;
+	
+	//trace("sCompValue >> " + sCompValue +  " sNewvalue >> " + sNewvalue + "  sOldValue >> " + sOldValue );
+	var sFilePath = this.fileUploadSingle.value;
+	var dirExpt = nexacro.toNumber(sFilePath.lastIndexOf("\\"))+1;
+	var sFileName = String(sFilePath).substr(dirExpt);
+	var nRow = this.ds_fileSingle.addRow();
+	
+	this.ds_fileSingle.setColumn(nRow, "FILE_PATH", sFilePath);
+	this.ds_fileSingle.setColumn(nRow, "FILE_NAME", sFileName);
+}
+
+this.fileUploadSingle_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	trace("fileUpload_onerror >> " + e.errormsg);
+}
+
+this.fileUploadSingle_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{
+	trace("fileUpload_onsuccess >> " + e.datasets[0].saveXML());
+	this.ds_single.copyData(e.datasets[0]);
+}
+
+
+this.btn_AddItem_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	this.fileUploadMulti.appendItem();
+}
+
+this.fileUploadMulti_onitemchanged = function(obj:FileUpload,  e:nexacro.FileUploadItemChangeEventInfo)
+{
+	var sFileName;
+	var sFilePath;
+	
+	if(obj.multiselect)
+    {		
+	    //var sFullData = e.newvalue;
+		var sFullData = String(this.fileUploadMulti.value);
+		var aFilePath = sFullData.split(",");
+		this.ds_fileMulti.clearData();
+	}
+	
+	for(var i=0; i<aFilePath.length; i++)
+	{
+		sFilePath = String(aFilePath[i]);
+
+		var dirExpt = sFilePath.lastIndexOf("\\")+1;
+
+		sFileName = sFilePath.substr(dirExpt);
+		
+		this.ds_fileMulti.addRow();
+		
+		this.ds_fileMulti.setColumn(i, "FILE_PATH", sFilePath);
+		this.ds_fileMulti.setColumn(i, "FILE_NAME", sFileName);
+		this.ds_fileMulti.setColumn(i, "NUM", i+1);
+		this.ds_fileMulti.setColumn(i, "CHK",1);	
+	}
+}
+
+this.fileUploadMulti_onerror = function(obj:FileUpload,  e:nexacro.FileUploadErrorEventInfo)
+{
+	trace("fileUpload_onerror >> " + e.errormsg);
+}
+
+this.fileUploadMulti_onsuccess = function(obj:FileUpload,  e:nexacro.FileUploadLoadEventInfo)
+{
+	trace("fileUpload_onsuccess >> " + e.datasets[0].saveXML());
+	this.ds_multi.copyData(e.datasets[0]);
+}
+
+
+this.btn_uploadSingle_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	var objFileUpload = this.fileUploadSingle;
+	
+	/**
+	 * 현재 Form 상의 FileUpload 컴포넌트를 서버에 업로드한다.
+	 * @param {Object} objFileUpload		파일업로드 컴포넌트
+	 * @param {String} sUrl		            파일업로드 서비스 호출 경로 (생략 가능)
+	 * @param {String} sPath				파일업로드시킬 폴더 위치 (생략 가능)
+	 * @example this.gfnFileUpload(objFileUpload);
+	 */
+	this.fnFileUpload(objFileUpload);
+}
+
+this.btn_uploadMulti_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	//trace(this.dsFileMulti.saveXML());
+    var objFileUpload = this.fileUploadMulti;
+
+	/**
+	 * 현재 Form 상의 FileUpload 컴포넌트를 서버에 업로드한다.
+	 * @param {Object} objFileUpload		파일업로드 컴포넌트
+	 * @param {String} sUrl		            파일업로드 서비스 호출 경로 (생략 가능)
+	 * @param {String} sPath				파일업로드시킬 폴더 위치 (생략 가능)
+	 * @example this.gfnFileUpload(objFileUpload);
+	 */
+    this.fnFileUpload(objFileUpload);
+}
+
+this.grd_singleFile_oncellclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+    if(this.ds_single.getRowCount() == 0 )
+    {
+        return;
+    }
+    
+	var objFileDownload = this.fileDownload;
+	var sFilename= this.ds_single.getColumn(e.row,"filename");
+	
+	/**
+	 * 현재 Form 상의 FileDownload 컴포넌트를 이용하여 지정한 위치에서 원하는 파일을 다운로드한다.
+	 * @param {Object} objFileDownload	파일다운로드 컴포넌트
+	 * @param {Object} sFilename		다운로드 할 파일명
+	 * @param {String} sUrl		        파일업로드 서비스 호출 경로 (생략 가능)
+	 * @param {String} sPath			파일업로드시킬 폴더 위치 (생략 가능)
+	 * @example this.gfnFileUpload(objFileUpload, sFilename);
+	 */
+	this.fnFileDownload(objFileDownload, sFilename);
+}
+
+
+
+
+this.fnFileUpload = function(objFileUpload, sUrl, sPath)
+{	
+	//파일업로드 서비스 호출 경로
+	var sFileUrl = application.services["svcurl"].url + "/advancedUploadFiles.do";
+    
+	//파일 업로드 시킬 폴더 위치 지정
+	var sPath = "PATH=upload";
+	
+	var bSucc = objFileUpload.upload(sFileUrl + "?" + sPath);
+	trace("bSucc >> " + bSucc);
+}
+
+
+this.fnFileDownload = function(objFileDownload, sFilename, sUrl, sPath)
+{
+	//파일다운로드 서비스 호출 경로
+	var sFileUrl = application.services["svcurl"].url  + "/advancedDownloadFile.do";
+	
+	//파일 다운로드할 폴더 위치 지정
+	var sPath = "PATH=upload";
+	
+	objFileDownload.set_downloadfilename(sFilename);
+	objFileDownload.download(sFileUrl + "?" + sPath + "&fileName=" + sFilename);
+}
+
+
+this.grd_singleFile01_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	
+}
+
+this.grd_multiFile_oncelldblclick = function(obj:Grid, e:nexacro.GridClickEventInfo)
+{
+	if(this.ds_multi.getRowCount() == 0 )
+    {
+        return;
+    }
+    
+	var objFileDownload = this.fileDownload;
+	var sFilename= this.ds_multi.getColumn(e.row,"filename");
+	
+	/**
+	 * 현재 Form 상의 FileDownload 컴포넌트를 이용하여 지정한 위치에서 원하는 파일을 다운로드한다.
+	 * @param {Object} objFileDownload	파일다운로드 컴포넌트
+	 * @param {Object} sFilename		다운로드 할 파일명
+	 * @param {String} sUrl		        파일업로드 서비스 호출 경로 (생략 가능)
+	 * @param {String} sPath			파일업로드시킬 폴더 위치 (생략 가능)
+	 * @example this.gfnFileUpload(objFileUpload, sFilename);
+	 */
+	this.fnFileDownload(objFileDownload, sFilename);
+}
+]]></Script>
+  </Form>
+</FDL>

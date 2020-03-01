@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="1.5">
+  <TypeDefinition url="..\default_typedef.xml"/>
+  <Form id="Pattern_06" classname="Work" inheritanceid="" position="absolute" titletext="분할전송 샘플" left="0" width="800" top="0" height="400" onload="form_onload">
+    <Layouts>
+      <Layout>
+        <Grid id="grd_list" taborder="0" binddataset="ds_list" useinputpanel="false" cellsizingtype="col" nodatatext="데이타를 찾을 수 없습니다." left="0" top="81" right="0" bottom="0" autofittype="col">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="317"/>
+                <Column size="460"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="30"/>
+              </Rows>
+              <Band id="head">
+                <Cell style="background:#348ddf18;color:#1f5ca7ff;color2:#1f5ca7ff;" text="ID"/>
+                <Cell col="1" style="background:#348ddf18;color:#1f5ca7ff;color2:#1f5ca7ff;backgroundimage: ;" text="NAME"/>
+              </Band>
+              <Band id="body">
+                <Cell celltype="body" edittype="none" style="cursor: ;" text="bind:LARGE_ID"/>
+                <Cell col="1" celltype="none" edittype="normal" style="align:left;font:underline 10 arial;cursor:hand;" text="bind:NAME" maskchar=" " suppress="0"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Div id="div_search" taborder="16" left="0" top="0" right="0" height="41" scrollbars="none" cssclass="div_WF_SearchBg">
+          <Layouts>
+            <Layout>
+              <Button id="btn_index00" taborder="30" text="2" left="24.31%" top="55" right="72.31%" height="25"/>
+              <Button id="Button05" taborder="31" text="조회" cssclass="btn_WF_Search" width="58" height="25" onclick="fn_search" right="8" bottom="6"/>
+            </Layout>
+          </Layouts>
+        </Div>
+        <Div id="div_grid_top" taborder="17" left="0" top="52" right="0" height="23" scrollbars="none">
+          <Layouts>
+            <Layout>
+              <Static id="sta_title" taborder="25" text="Records Found" cssclass="sta_WF_GridFound2" left="97" top="1" bottom="-1" width="120"/>
+              <Static id="sta_total_cnt" taborder="26" text="0" cssclass="sta_WF_GridFound" left="8" top="1" bottom="-1" width="84" style="align:right middle;"/>
+            </Layout>
+          </Layouts>
+        </Div>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_search" firefirstcount="0" firenextcount="0" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="searchCondition" type="STRING" size="100"/>
+          <Column id="searchKeyword" type="STRING" size="100"/>
+          <Column id="pageIndex" type="INT" size="256"/>
+          <Column id="pageUnit" type="INT" size="256"/>
+          <Column id="pageSize" type="INT" size="256"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="searchKeyword"/>
+            <Col id="searchCondition"/>
+            <Col id="pageIndex">1</Col>
+            <Col id="pageUnit">10</Col>
+            <Col id="pageSize">10</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+      <Dataset id="ds_list" firefirstcount="1000" firenextcount="1000" useclientlayout="false" updatecontrol="true" enableevent="true" loadkeymode="keep" loadfiltermode="keep" reversesubsum="false">
+        <ColumnInfo>
+          <Column id="LARGE_ID" type="STRING" size="256"/>
+          <Column id="NAME" type="STRING" size="256"/>
+        </ColumnInfo>
+      </Dataset>
+    </Objects>
+    <Bind/>
+    <Script type="xscript5.0"><![CDATA[/***********************************************************************************
+* SYSTEM      : 넥사크로플랫폼 PackageB
+* BUSINESS    : 넥사크로플랫폼 PackageB
+* FILE NAME   : Pattern_06
+* PROGRAMMER  : 
+* DATE        : 
+* DESCRIPTION : Paging sample
+*------------------------------------------------------------------
+* MODIFY DATE   PROGRAMMER			DESCRIPTION
+*------------------------------------------------------------------
+* 
+*------------------------------------------------------------------
+***********************************************************************************/
+
+/***********************************************************************************
+* Common Library
+***********************************************************************************/
+include "Lib::Comm.xjs";
+
+
+/***********************************************************************************
+* Global/Local Variable
+***********************************************************************************/
+
+
+
+/***********************************************************************************
+* Form Event
+***********************************************************************************/
+/**
+ * form onload 함수
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.form_onload = function(obj:Form, e:nexacro.LoadEventInfo)
+{
+	Iject.formOnload(obj);  //form onload
+} 
+ 
+/**
+ * 조회
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.fn_search = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+    var strSvcId    = "search";
+	var strSvcUrl   = application.services["svcurl"].url + "/sampleLargeData.do";
+	var inData      = "";
+	var outData     = "ds_list=ds_firstRowData";
+	var strArg      = "firstRowCount=100";
+	var callBackFnc = "fnCallback";
+	var isAsync   	= true;
+	var nDataType   = 0;
+	
+    this.transaction( strSvcId      //1.strMergeSvcID
+					, strSvcUrl     //2.strServiceUrl
+					, inData        //3.inDataSet
+					, outData       //4.outDataSet
+					, strArg        //5.arguments
+					, callBackFnc	//6.strCallbackFunc
+					, isAsync       //7.bAsync
+					, nDataType     //0.nDataType : 0(XML 타입), 1((Binary 타입),  2(SSV 타입) --> HTML5에서는 Binary 타입은 지원안함
+					, false);       //0.bCompress ( default : false ) 
+}
+
+/************************************************************************************************
+ * CALLBACK 콜백 처리부분(Transaction, Popup)
+ ************************************************************************************************/
+/**
+ * @description Transaction CallBack 함수(선택)
+*/
+this.fnCallback = function(svcID,errorCode,errorMsg)
+{
+	// 에러 시 화면 처리 내역
+	if(errorCode != 0)
+	{
+		return;
+	}
+	
+	switch(svcID)
+	{
+		case "search":
+            this.div_grid_top.sta_total_cnt.set_text(this.grd_list.rowcount);
+			break;
+	}
+}
+
+/**
+ * 검색  Enter키
+ * @return 
+ * @example
+ *
+ * @memberOf this
+ */
+this.div_search_btn_search_onclick = function(obj:Button,  e:nexacro.ClickEventInfo)
+{
+	if ( e.keycode == 13 )
+	{
+		this.fn_search();
+	}
+}]]></Script>
+  </Form>
+</FDL>
